@@ -9,7 +9,7 @@ with sync_playwright() as p:
     page = browser.new_page()
 
     # URL de login de WodBuster
-    page.goto("https://app.wodbuster.com/login")
+    page.goto("https://evozone.wodbuster.com")
 
     page.fill("input[name='email']", USERNAME)
     page.fill("input[name='password']", PASSWORD)
