@@ -10,10 +10,10 @@ with sync_playwright() as p:
 
     page.goto("https://evozone.wodbuster.com")
 
-    page.wait_for_selector("input[name='email']", state="visible")
+    page.wait_for_selector("#email", state="visible")
+page.fill("#email", USERNAME)
+page.fill("#password", PASSWORD)
 
-    page.fill("input[name='email']", USERNAME)
-    page.fill("input[name='password']", PASSWORD)
     page.click("button[type='submit']")
 
     page.wait_for_timeout(5000)
