@@ -8,18 +8,17 @@ with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
     page = browser.new_page()
 
-    # URL de login de WodBuster
     page.goto("https://evozone.wodbuster.com")
 
-page.wait_for_selector("input[name='email']", state="visible")
+    page.wait_for_selector("input[name='email']", state="visible")
 
-page.fill("input[name='email']", USERNAME)
-page.fill("input[name='password']", PASSWORD)
-page.click("button[type='submit']")
-
+    page.fill("input[name='email']", USERNAME)
+    page.fill("input[name='password']", PASSWORD)
+    page.click("button[type='submit']")
 
     page.wait_for_timeout(5000)
 
     print("Login realizado correctamente")
 
     browser.close()
+
