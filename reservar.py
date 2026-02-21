@@ -8,11 +8,14 @@ with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
     page = browser.new_page()
 
-    page.goto("https://evozone.wodbuster.com")
+    page.goto("https://evozone.wodbuster.com", wait_until="networkidle")
 
-    page.wait_for_selector("#email", state="visible")
-page.fill("#email", USERNAME)
-page.fill("#password", PASSWORD)
+    # Esperar a que cargue completamente
+    page.wait_for_timeout(5000)
+
+    # Rellenar login usando placeholders visibles
+    page.fill("input[placeholder='email']", USERNAME)
+    page.fill("input[type='password']", PASSWORD)
 
     page.click("button[type='submit']")
 
@@ -21,4 +24,5 @@ page.fill("#password", PASSWORD)
     print("Login realizado correctamente")
 
     browser.close()
+
 
