@@ -11,9 +11,12 @@ with sync_playwright() as p:
     # URL de login de WodBuster
     page.goto("https://evozone.wodbuster.com")
 
-    page.fill("input[name='email']", USERNAME)
-    page.fill("input[name='password']", PASSWORD)
-    page.click("button[type='submit']")
+page.wait_for_selector("input[name='email']", state="visible")
+
+page.fill("input[name='email']", USERNAME)
+page.fill("input[name='password']", PASSWORD)
+page.click("button[type='submit']")
+
 
     page.wait_for_timeout(5000)
 
